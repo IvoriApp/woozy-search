@@ -7,25 +7,30 @@ import 'Models.dart';
 
 class Woozy<T> {
   final int limit;
+  final bool case_sensitive;
   List<InputEntry<T>> fixedLengthList = [];
 
   final Levenshtein _levenshtein = Levenshtein();
 
   /// @param limit: limit the number of items return from search, default to return 10 items.
-  Woozy({this.limit = 10}) {
+  Woozy({this.limit = 10, this.case_sensitive = false}) {
     assert(limit > 0, 'limit need to be greater than zero');
   }
 
   void add_entry(String text, {T value}) {
-    fixedLengthList.add(InputEntry(text, value: value));
+    fixedLengthList
+        .add(InputEntry(text, value: value, case_sensitive: case_sensitive));
   }
 
   void add_entries(List<String> texts) {
-    fixedLengthList.addAll(texts.map((e) => InputEntry(e)));
+    fixedLengthList.addAll(
+        texts.map((e) => InputEntry(e, case_sensitive: case_sensitive)));
   }
 
   void set_entries(List<String> texts) {
-    fixedLengthList = texts.map((e) => InputEntry(e)).toList();
+    fixedLengthList = texts
+        .map((e) => InputEntry(e, case_sensitive: case_sensitive))
+        .toList();
   }
 
   List<MatchResult> search(String query) {

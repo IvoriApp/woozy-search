@@ -80,7 +80,7 @@ void main() {
   });
 
   group('Associated values', () {
-    test('without values', () {
+    test('`null` values', () {
       final woozy = Woozy();
 
       woozy.add_entry('foo');
@@ -107,6 +107,22 @@ void main() {
       woozy.add_entry('bar', value: bar_id);
       final records = woozy.search('f');
       expect(records.first.value, foo_id);
+    });
+  });
+
+  group('Case sensitivity', () {
+    test('case insensitive', () {
+      final woozy = Woozy();
+      woozy.add_entries(['FOO', 'Boo']);
+      final records = woozy.search('foo');
+      expect(records.first.text, 'FOO');
+    });
+
+    test('case insensitive', () {
+      final woozy = Woozy(case_sensitive: true);
+      woozy.add_entries(['FOO', 'Boo']);
+      final records = woozy.search('foo');
+      expect(records.first.text, 'Boo');
     });
   });
 }
