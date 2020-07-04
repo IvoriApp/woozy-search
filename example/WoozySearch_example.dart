@@ -3,9 +3,7 @@ import 'package:WoozySearch/WoozySearch.dart';
 void woozy_search(woozy, query) {
   final output = woozy.search(query);
   print("Search for: '$query':");
-  output.forEach((element) {
-    print(' - ${element}');
-  });
+  output.forEach((element) => print(' - ${element}'));
   print('---\n');
 }
 
@@ -23,9 +21,24 @@ void with_associated_values() {
   woozy_search(woozy, 'humphray');
 }
 
+void with_search_output_limit() {
+  final woozy = Woozy(limit: 2);
+  woozy.set_entries(List.filled(10, 'foo'));
+  woozy_search(woozy, 'f');
+}
+
+void with_case_sensitive() {
+  final woozy = Woozy(case_sensitive: true);
+  woozy.set_entries(['FOO', 'boo']);
+  woozy_search(woozy, 'foo');
+}
+
 void main() {
   basic_usage();
 
   with_associated_values();
-}
 
+  with_search_output_limit();
+
+  with_case_sensitive();
+}
