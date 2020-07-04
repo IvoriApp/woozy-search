@@ -23,7 +23,7 @@ void with_associated_values() {
 
 void with_search_output_limit() {
   final woozy = Woozy(limit: 2);
-  woozy.set_entries(List.filled(10, 'foo'));
+  woozy.set_entries(List.filled(100, 'foo'));
   woozy_search(woozy, 'f');
 }
 

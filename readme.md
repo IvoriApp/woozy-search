@@ -1,10 +1,10 @@
 # Woozy Search
 
-A super simple and lightweight client-side fuzzy-search library based on levenshtein distance. 
+A super simple and lightweight client-side fuzzy-search library based on Levenshtein distance. 
 
 ## Usage
 
-**Basic usage**
+**Basic Usage**
 
 ```dart
 import 'package:WoozySearch/WoozySearch.dart';
@@ -25,7 +25,10 @@ Output:
  - text: skating, score: 0.14
 ```
 
-**With associate values**
+**With Associate Values**
+
+Associate value can be anything, integers, UUIDs, text, etc. 
+As an example, we use a name and their phone number here. 
 
 ```dart
 import 'package:WoozySearch/WoozySearch.dart';
@@ -48,14 +51,17 @@ Output:
  - text: John Doe, score: 0.13, value: +1 210-269-0117
 ```
 
-**With search output limit**
+**With Search Output Limit**
+
+Limit the number of search result to return.
+It is defaulted to 10, but can be overwritten. 
 
 ```dart
 import 'package:WoozySearch/WoozySearch.dart';
   
 main() {
   final woozy = Woozy(limit: 2);
-  woozy.set_entries(List.filled(10, 'foo'));
+  woozy.set_entries(List.filled(100, 'foo'));
   final output = woozy.search('f');
   output.forEach((element) => print(' - ${element}'));
 }
@@ -68,7 +74,7 @@ Output:
  - text: foo, score: 0.33
 ```
 
-**With case sensitive**
+**With Case Sensitive**
 
 ```dart
 main() {
