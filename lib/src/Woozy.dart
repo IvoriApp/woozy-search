@@ -8,27 +8,27 @@ import 'Models.dart';
 class Woozy<T> {
   final int limit;
   final bool case_sensitive;
-  List<InputEntry<T>> fixedLengthList = [];
+  List<InputEntry<T>> entries = [];
 
   final Levenshtein _levenshtein = Levenshtein();
 
-  /// @param limit: limit the number of items return from search, default to return 10 items.
+  /// @param limit: limit the number of items return from search, default to
+  /// return 10 items.
   Woozy({this.limit = 10, this.case_sensitive = false}) {
     assert(limit > 0, 'limit need to be greater than zero');
   }
 
   void add_entry(String text, {T value}) {
-    fixedLengthList
-        .add(InputEntry(text, value: value, case_sensitive: case_sensitive));
+    entries.add(InputEntry(text, value: value, case_sensitive: case_sensitive));
   }
 
   void add_entries(List<String> texts) {
-    fixedLengthList.addAll(
+    entries.addAll(
         texts.map((e) => InputEntry(e, case_sensitive: case_sensitive)));
   }
 
   void set_entries(List<String> texts) {
-    fixedLengthList = texts
+    entries = texts
         .map((e) => InputEntry(e, case_sensitive: case_sensitive))
         .toList();
   }
@@ -38,7 +38,7 @@ class Woozy<T> {
     var heapPQ = HeapPriorityQueue<MatchResult>(
         (lhs, rhs) => lhs.score.compareTo(rhs.score));
 
-    fixedLengthList.forEach((entry) {
+    entries.forEach((entry) {
       final bestScore = entry.words.fold(0.0, (currentScore, word) {
         final distance = _levenshtein.distance(query, word);
         final max_length = max(query.length, word.length);

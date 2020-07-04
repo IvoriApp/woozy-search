@@ -1,7 +1,7 @@
 import 'package:WoozySearch/WoozySearch.dart';
 
 void woozy_search(woozy, query) {
-  var output = woozy.search(query);
+  final output = woozy.search(query);
   print("Search for: '$query':");
   output.forEach((element) {
     print(' - ${element}');
@@ -9,12 +9,23 @@ void woozy_search(woozy, query) {
   print('---\n');
 }
 
-void example3() {
-  var woozy = Woozy();
-  woozy.add_entries(['sun', 'sunflowers']);
-  woozy_search(woozy, 'su');
+void basic_usage() {
+  final woozy = Woozy();
+  woozy.add_entries(['basketball', 'badminton', 'skating']);
+  woozy_search(woozy, 'badmi');
+}
+
+void with_associated_values() {
+  final woozy = Woozy();
+  woozy.add_entry('John Doe', value: "+1 210-269-0117");
+  woozy.add_entry('Nate Humphrey', value: "+1 (416) 527-4927");
+  woozy.add_entry('Serena Waldorf', value: "+ 1 914-514-7901");
+  woozy_search(woozy, 'humphray');
 }
 
 void main() {
-  example3();
+  basic_usage();
+
+  with_associated_values();
 }
+
