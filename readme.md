@@ -1,17 +1,16 @@
-A library for Dart developers.
+# Woozy Search
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+Given a search query, find a list of relevant result from a set of data.
 
 ## Usage
 
 A simple usage example:
 
-```dart
+```
 import 'package:WoozySearch/WoozySearch.dart';
 
 main() {
-  var awesome = new Awesome();
+  var woozy = new Woozy();
 }
 ```
 
@@ -19,4 +18,4 @@ main() {
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: http://example.com/issues/replaceme
+[tracker]: https://github.com/GigaBox/WoozySearch/issues
