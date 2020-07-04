@@ -1,4 +1,4 @@
-name: WoozySearch
+name: woozy_search
 description: A super simple and lightweight client-side fuzzy-search library based on Levenshtein distance.
 version: 1.0.0
 homepage: https://github.com/IvoriApp/woozy-search
@@ -9,6 +9,8 @@ environment:
 dependencies:
   # https://pub.dev/packages/collection
   collection: '>=1.14.13 <2.0.0'
+  # https://pub.dev/packages/meta
+  meta: '>=1.1.8 <2.0.0'
 
 dev_dependencies:
   uuid: ^2.2.0

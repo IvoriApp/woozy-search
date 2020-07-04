@@ -7,7 +7,7 @@ A super simple and lightweight client-side fuzzy-search library based on Levensh
 **Basic Usage**
 
 ```dart
-import 'package:WoozySearch/WoozySearch.dart';
+import 'package:WoozySearch/woozy_search.dart';
 
 main() {
   final woozy = Woozy();
@@ -31,7 +31,7 @@ Associate value can be anything, integers, UUIDs, text, etc.
 As an example, we use a name and their phone number here. 
 
 ```dart
-import 'package:WoozySearch/WoozySearch.dart';
+import 'package:WoozySearch/woozy_search.dart';
 
 main() {
   final woozy = new Woozy();
@@ -57,7 +57,7 @@ Limit the number of search result to return.
 It is defaulted to 10, but can be overwritten. 
 
 ```dart
-import 'package:WoozySearch/WoozySearch.dart';
+import 'package:WoozySearch/woozy_search.dart';
   
 main() {
   final woozy = Woozy(limit: 2);

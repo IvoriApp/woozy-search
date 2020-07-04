@@ -1,4 +1,4 @@
-import 'package:WoozySearch/WoozySearch.dart';
+import 'package:woozy_search/woozy_search.dart';
 import 'package:test/test.dart';
 import 'package:uuid/uuid.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:WoozySearch/src/Levenshtein.dart';
+import 'package:woozy_search/src/Levenshtein.dart';
 import 'package:collection/collection.dart';
 
 import 'Models.dart';

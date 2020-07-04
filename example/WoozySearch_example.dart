@@ -1,4 +1,4 @@
-import 'package:WoozySearch/WoozySearch.dart';
+import 'package:woozy_search/woozy_search.dart';
 
 void woozy_search(woozy, query) {
   final output = woozy.search(query);

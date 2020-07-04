@@ -1,4 +1,4 @@
-import 'package:WoozySearch/src/Levenshtein.dart';
+import 'package:woozy_search/src/Levenshtein.dart';
 import 'package:test/test.dart';
 
 void main() {
