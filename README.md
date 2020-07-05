@@ -4,6 +4,11 @@ A super simple and lightweight client-side fuzzy-search library based on Levensh
 
 ## Usage
 
+```pubspec.yaml
+dependencies:
+  woozy_search: '>=1.0.1 <2.0.0'
+```
+
 **Basic Usage**
 
 ```dart
