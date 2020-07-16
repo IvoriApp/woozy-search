@@ -35,7 +35,8 @@ class Woozy<T> {
   /// Example 2, [text] can be a label of an image, and [value] can the filename
   /// of the image.
   void add_entry(String text, {T value}) {
-    _entries.add(InputEntry(text, value: value, case_sensitive: case_sensitive));
+    _entries
+        .add(InputEntry(text, value: value, case_sensitive: case_sensitive));
   }
 
   /// Add a list of items to be searched for.
