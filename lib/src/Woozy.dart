@@ -5,40 +5,62 @@ import 'package:collection/collection.dart';
 
 import 'Models.dart';
 
+/// The main entry point to the library woozy search.
 class Woozy<T> {
+  /// Limit the number of items return from search. Default to 10.
   final int limit;
+
+  /// Specify whether the string matching is case sensitive or not. Default
+  /// to `false`.
   final bool case_sensitive;
-  List<InputEntry<T>> entries = [];
+
+  /// A list of items to be searched.
+  List<InputEntry<T>> _entries = [];
 
   final Levenshtein _levenshtein = Levenshtein();
 
-  /// @param limit: limit the number of items return from search, default to
-  /// return 10 items.
+  /// Constructor to create a `Woozy` object.
   Woozy({this.limit = 10, this.case_sensitive = false}) {
     assert(limit > 0, 'limit need to be greater than zero');
   }
 
+  /// Add a new entry to the list of items to be searched for.
+  ///
+  /// [text] is where the search will be based on.
+  ///
+  /// [value] is an optional value that can be attached the [text].
+  ///
+  /// Example 1, [text] can be a description of an article, and [value] can be
+  /// a database id pointing to the entire article.
+  /// Example 2, [text] can be a label of an image, and [value] can the filename
+  /// of the image.
   void add_entry(String text, {T value}) {
-    entries.add(InputEntry(text, value: value, case_sensitive: case_sensitive));
+    _entries.add(InputEntry(text, value: value, case_sensitive: case_sensitive));
   }
 
+  /// Add a list of items to be searched for.
   void add_entries(List<String> texts) {
-    entries.addAll(
+    _entries.addAll(
         texts.map((e) => InputEntry(e, case_sensitive: case_sensitive)));
   }
 
+  /// Set the list of items to be searched for. This will overwrite exiting
+  /// items.
   void set_entries(List<String> texts) {
-    entries = texts
+    _entries = texts
         .map((e) => InputEntry(e, case_sensitive: case_sensitive))
         .toList();
   }
 
+  /// The main search function.
+  ///
+  /// Given a search query. Return a list of search results.
   List<MatchResult> search(String query) {
     // Use a heap to keep track of the top `limit` best scores
     var heapPQ = HeapPriorityQueue<MatchResult>(
         (lhs, rhs) => lhs.score.compareTo(rhs.score));
 
-    entries.forEach((entry) {
+    _entries.forEach((entry) {
       final bestScore = entry.words.fold(0.0, (currentScore, word) {
         final distance = _levenshtein.distance(query, word);
         final max_length = max(query.length, word.length);

@@ -9,6 +9,7 @@ class Levenshtein {
   int length2;
   List<List<int>> _dp;
 
+  /// Constructor.
   Levenshtein() {
     length1 = 10;
     length2 = 10;
@@ -38,6 +39,7 @@ class Levenshtein {
     }
   }
 
+  /// Give two words [word1] and [word2], return their Levenshtein distance.
   int distance(String word1, String word2) {
     _resizeDPArray(word1.length, word2.length);
 
