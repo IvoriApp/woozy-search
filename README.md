@@ -16,7 +16,7 @@ import 'package:woozy_search/woozy_search.dart';
 
 main() {
   final woozy = Woozy();
-  woozy.add_entries(['basketball', 'badminton', 'skating']);
+  woozy.addEntries(['basketball', 'badminton', 'skating']);
   final output = woozy.search('badmi');
   output.forEach((element) => print(' - ${element}'));
 }
@@ -40,9 +40,9 @@ import 'package:woozy_search/woozy_search.dart';
 
 main() {
   final woozy = new Woozy();
-  woozy.add_entry('John Doe', value: "+1 210-269-0117");
-  woozy.add_entry('Nate Humphrey', value: "+1 (416) 527-4927");
-  woozy.add_entry('Serena Waldorf', value: "+ 1 914-514-7901");
+  woozy.addEntry('John Doe', value: "+1 210-269-0117");
+  woozy.addEntry('Nate Humphrey', value: "+1 (416) 527-4927");
+  woozy.addEntry('Serena Waldorf', value: "+ 1 914-514-7901");
   final output = woozy.search('humphray');
   output.forEach((element) => print(' - ${element}'));
 }
@@ -66,7 +66,7 @@ import 'package:woozy_search/woozy_search.dart';
   
 main() {
   final woozy = Woozy(limit: 2);
-  woozy.set_entries(List.filled(100, 'foo'));
+  woozy.setEntries(List.filled(100, 'foo'));
   final output = woozy.search('f');
   output.forEach((element) => print(' - ${element}'));
 }
@@ -83,8 +83,8 @@ Output:
 
 ```dart
 main() {
-  final woozy = Woozy(case_sensitive: true);
-  woozy.set_entries(['FOO', 'boo']);
+  final woozy = Woozy(caseSensitive: true);
+  woozy.setEntries(['FOO', 'boo']);
   final output = woozy.search('foo');
   output.forEach((element) => print(' - ${element}'));
 }

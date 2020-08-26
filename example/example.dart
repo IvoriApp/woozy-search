@@ -1,44 +1,44 @@
 import 'package:woozy_search/woozy_search.dart';
 
-void woozy_search(woozy, query) {
+void woozySearch(woozy, query) {
   final output = woozy.search(query);
   print("Search for: '$query':");
-  output.forEach((element) => print(' - ${element}'));
+  output.forEach((element) => print(' - $element'));
   print('---\n');
 }
 
-void basic_usage() {
+void basicUsage() {
   final woozy = Woozy();
-  woozy.add_entries(['basketball', 'badminton', 'skating']);
-  woozy_search(woozy, 'badmi');
+  woozy.addEntries(['basketball', 'badminton', 'skating']);
+  woozySearch(woozy, 'badmi');
 }
 
-void with_associated_values() {
+void withAssociatedValues() {
   final woozy = Woozy();
-  woozy.add_entry('John Doe', value: "+1 210-269-0117");
-  woozy.add_entry('Nate Humphrey', value: "+1 (416) 527-4927");
-  woozy.add_entry('Serena Waldorf', value: "+ 1 914-514-7901");
-  woozy_search(woozy, 'humphray');
+  woozy.addEntry('John Doe', value: '+1 210-269-0117');
+  woozy.addEntry('Nate Humphrey', value: '+1 (416) 527-4927');
+  woozy.addEntry('Serena Waldorf', value: '+ 1 914-514-7901');
+  woozySearch(woozy, 'humphray');
 }
 
-void with_search_output_limit() {
+void withSearchOutputLimit() {
   final woozy = Woozy(limit: 2);
-  woozy.set_entries(List.filled(100, 'foo'));
-  woozy_search(woozy, 'f');
+  woozy.setEntries(List.filled(100, 'foo'));
+  woozySearch(woozy, 'f');
 }
 
-void with_case_sensitive() {
-  final woozy = Woozy(case_sensitive: true);
-  woozy.set_entries(['FOO', 'boo']);
-  woozy_search(woozy, 'foo');
+void withCaseSensitive() {
+  final woozy = Woozy(caseSensitive: true);
+  woozy.setEntries(['FOO', 'boo']);
+  woozySearch(woozy, 'foo');
 }
 
 void main() {
-  basic_usage();
+  basicUsage();
 
-  with_associated_values();
+  withAssociatedValues();
 
-  with_search_output_limit();
+  withSearchOutputLimit();
 
-  with_case_sensitive();
+  withCaseSensitive();
 }
