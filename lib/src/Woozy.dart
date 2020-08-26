@@ -56,9 +56,9 @@ class Woozy<T> {
   /// The main search function.
   ///
   /// Given a search query. Return a list of search results.
-  List<MatchResult> search(String query) {
+  List<MatchResult<T>> search(String query) {
     // Use a heap to keep track of the top `limit` best scores
-    var heapPQ = HeapPriorityQueue<MatchResult>(
+    var heapPQ = HeapPriorityQueue<MatchResult<T>>(
         (lhs, rhs) => lhs.score.compareTo(rhs.score));
 
     _entries.forEach((entry) {
