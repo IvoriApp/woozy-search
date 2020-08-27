@@ -15,9 +15,9 @@ class InputEntry<T> {
   List<String> get words => _words;
 
   /// Constructor of a input entry.
-  InputEntry(this.text, {this.value, @required bool case_sensitive}) {
+  InputEntry(this.text, {this.value, @required bool caseSensitive}) {
     _words = text.split(' ');
-    if (!case_sensitive) {
+    if (!caseSensitive) {
       _words = _words.map((word) => word.toLowerCase()).toList();
     }
   }

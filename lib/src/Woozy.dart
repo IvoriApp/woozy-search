@@ -12,7 +12,7 @@ class Woozy<T> {
 
   /// Specify whether the string matching is case sensitive or not. Default
   /// to `false`.
-  final bool case_sensitive;
+  final bool caseSensitive;
 
   /// A list of items to be searched.
   List<InputEntry<T>> _entries = [];
@@ -20,7 +20,7 @@ class Woozy<T> {
   final Levenshtein _levenshtein = Levenshtein();
 
   /// Constructor to create a `Woozy` object.
-  Woozy({this.limit = 10, this.case_sensitive = false}) {
+  Woozy({this.limit = 10, this.caseSensitive = false}) {
     assert(limit > 0, 'limit need to be greater than zero');
   }
 
@@ -34,23 +34,21 @@ class Woozy<T> {
   /// a database id pointing to the entire article.
   /// Example 2, [text] can be a label of an image, and [value] can the filename
   /// of the image.
-  void add_entry(String text, {T value}) {
-    _entries
-        .add(InputEntry(text, value: value, case_sensitive: case_sensitive));
+  void addEntry(String text, {T value}) {
+    _entries.add(InputEntry(text, value: value, caseSensitive: caseSensitive));
   }
 
   /// Add a list of items to be searched for.
-  void add_entries(List<String> texts) {
-    _entries.addAll(
-        texts.map((e) => InputEntry(e, case_sensitive: case_sensitive)));
+  void addEntries(List<String> texts) {
+    _entries
+        .addAll(texts.map((e) => InputEntry(e, caseSensitive: caseSensitive)));
   }
 
   /// Set the list of items to be searched for. This will overwrite exiting
   /// items.
-  void set_entries(List<String> texts) {
-    _entries = texts
-        .map((e) => InputEntry(e, case_sensitive: case_sensitive))
-        .toList();
+  void setEntries(List<String> texts) {
+    _entries =
+        texts.map((e) => InputEntry(e, caseSensitive: caseSensitive)).toList();
   }
 
   /// The main search function.
@@ -64,8 +62,8 @@ class Woozy<T> {
     _entries.forEach((entry) {
       final bestScore = entry.words.fold(0.0, (currentScore, word) {
         final distance = _levenshtein.distance(query, word);
-        final max_length = max(query.length, word.length);
-        final score = (max_length - distance) / max_length;
+        final maxLength = max(query.length, word.length);
+        final score = (maxLength - distance) / maxLength;
         return max<double>(currentScore, score);
       });
 

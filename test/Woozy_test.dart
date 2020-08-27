@@ -7,7 +7,7 @@ void main() {
     final woozy = Woozy();
 
     setUp(() {
-      woozy.set_entries(['foo', 'bar']);
+      woozy.setEntries(['foo', 'bar']);
     });
 
     test('first test', () {
@@ -15,14 +15,14 @@ void main() {
       expect(records.length, 2);
 
       // perfect match return score 1.0
-      final first_record = records.first;
-      expect(first_record.score, 1.0);
-      expect(first_record.text, 'foo');
+      final firstRecord = records.first;
+      expect(firstRecord.score, 1.0);
+      expect(firstRecord.text, 'foo');
 
       // worst match return score 0.0
-      final second_record = records.last;
-      expect(second_record.score, 0.0);
-      expect(second_record.text, 'bar');
+      final secondRecord = records.last;
+      expect(secondRecord.score, 0.0);
+      expect(secondRecord.text, 'bar');
     });
 
     test('empty query', () {
@@ -34,11 +34,11 @@ void main() {
       final records = woozy.search('foo');
       expect(records.length, 2);
 
-      final first_record = records.first;
-      expect(first_record.value, null);
+      final firstRecord = records.first;
+      expect(firstRecord.value, null);
 
-      final second_record = records.last;
-      expect(second_record.value, null);
+      final secondRecord = records.last;
+      expect(secondRecord.value, null);
     });
   });
 
@@ -46,7 +46,7 @@ void main() {
     final woozy = Woozy();
 
     setUp(() {
-      woozy.set_entries(['sun', 'sunflower']);
+      woozy.setEntries(['sun', 'sunflower']);
     });
 
     test('In favor of shorter word when query is short', () {
@@ -65,7 +65,7 @@ void main() {
   group('Limit the number of matches output', () {
     test('Positive number', () {
       final woozy = Woozy(limit: 5);
-      woozy.add_entries(List.filled(10, 'Foo'));
+      woozy.addEntries(List.filled(10, 'Foo'));
       final records = woozy.search('Foo');
       expect(records.length, 5);
     });
@@ -83,8 +83,8 @@ void main() {
     test('`null` values', () {
       final woozy = Woozy();
 
-      woozy.add_entry('foo');
-      woozy.add_entry('bar');
+      woozy.addEntry('foo');
+      woozy.addEntry('bar');
       final records = woozy.search('f');
       expect(records.first.value, null);
     });
@@ -92,35 +92,35 @@ void main() {
     test('integers', () {
       final woozy = Woozy();
 
-      woozy.add_entry('foo', value: 0);
-      woozy.add_entry('bar', value: 1);
+      woozy.addEntry('foo', value: 0);
+      woozy.addEntry('bar', value: 1);
       final records = woozy.search('f');
       expect(records.first.value, 0);
     });
 
     test('UUIDs', () {
       final woozy = Woozy();
-      final foo_id = Uuid();
-      final bar_id = Uuid();
+      final fooId = Uuid();
+      final barId = Uuid();
 
-      woozy.add_entry('foo', value: foo_id);
-      woozy.add_entry('bar', value: bar_id);
+      woozy.addEntry('foo', value: fooId);
+      woozy.addEntry('bar', value: barId);
       final records = woozy.search('f');
-      expect(records.first.value, foo_id);
+      expect(records.first.value, fooId);
     });
   });
 
   group('Case sensitivity', () {
     test('case insensitive', () {
       final woozy = Woozy();
-      woozy.add_entries(['FOO', 'Boo']);
+      woozy.addEntries(['FOO', 'Boo']);
       final records = woozy.search('foo');
       expect(records.first.text, 'FOO');
     });
 
     test('case insensitive', () {
-      final woozy = Woozy(case_sensitive: true);
-      woozy.add_entries(['FOO', 'Boo']);
+      final woozy = Woozy(caseSensitive: true);
+      woozy.addEntries(['FOO', 'Boo']);
       final records = woozy.search('foo');
       expect(records.first.text, 'Boo');
     });
