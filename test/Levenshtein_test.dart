@@ -29,5 +29,14 @@ void main() {
     test("Completely not match: 'Apple' vs 'Banana'", () {
       expect(levenshtein.distance('Apple', 'Banana'), 6);
     });
+
+    test('Instance reuse when dp array changes size', () {
+      expect(levenshtein.distance('t', 'a-long-string'), 12);
+      expect(
+        () => levenshtein.distance('to', 'short'),
+        isNot(throwsRangeError),
+      );
+      expect(levenshtein.distance('to', 'short'), 4);
+    });
   });
 }

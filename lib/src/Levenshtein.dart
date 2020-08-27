@@ -24,6 +24,9 @@ class Levenshtein {
       return;
     }
 
+    length1 = max(this.length1, length1);
+    length2 = max(this.length2, length2);
+
     _dp = List.generate(
         length1 + 1, (i) => List.filled(length2 + 1, 0, growable: false),
         growable: false);
@@ -37,6 +40,9 @@ class Levenshtein {
     for (var k = 0; k < length2 + 1; k++) {
       _dp[0][k] = k;
     }
+
+    this.length1 = length1;
+    this.length2 = length2;
   }
 
   /// Give two words [word1] and [word2], return their Levenshtein distance.
