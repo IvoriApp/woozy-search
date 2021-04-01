@@ -3,7 +3,8 @@ import 'dart:math';
 import 'package:woozy_search/src/Levenshtein.dart';
 import 'package:collection/collection.dart';
 
-import 'Models.dart';
+import 'InputEntry.dart';
+import 'MatchResult.dart';
 
 /// The main entry point to the library woozy search.
 class Woozy<Value> {
