@@ -3,10 +3,11 @@ import 'dart:math';
 import 'package:woozy_search/src/Levenshtein.dart';
 import 'package:collection/collection.dart';
 
-import 'Models.dart';
+import 'InputEntry.dart';
+import 'MatchResult.dart';
 
 /// The main entry point to the library woozy search.
-class Woozy<T> {
+class Woozy<Value> {
   /// Limit the number of items return from search. Default to 10.
   final int limit;
 
@@ -15,7 +16,7 @@ class Woozy<T> {
   final bool caseSensitive;
 
   /// A list of items to be searched.
-  List<InputEntry<T>> _entries = [];
+  List<InputEntry<Value>> _entries = [];
 
   final Levenshtein _levenshtein = Levenshtein();
 
@@ -34,33 +35,35 @@ class Woozy<T> {
   /// a database id pointing to the entire article.
   /// Example 2, [text] can be a label of an image, and [value] can the filename
   /// of the image.
-  void addEntry(String text, {T value}) {
-    _entries.add(InputEntry(text, value: value, caseSensitive: caseSensitive));
+  void addEntry(String text, {Value? value}) {
+    _entries.add(
+        InputEntry<Value>(text, value: value, caseSensitive: caseSensitive));
   }
 
   /// Add a list of items to be searched for.
   void addEntries(List<String> texts) {
-    _entries
-        .addAll(texts.map((e) => InputEntry(e, caseSensitive: caseSensitive)));
+    _entries.addAll(
+        texts.map((e) => InputEntry<Value>(e, caseSensitive: caseSensitive)));
   }
 
   /// Set the list of items to be searched for. This will overwrite exiting
   /// items.
   void setEntries(List<String> texts) {
-    _entries =
-        texts.map((e) => InputEntry(e, caseSensitive: caseSensitive)).toList();
+    _entries = texts
+        .map((e) => InputEntry<Value>(e, caseSensitive: caseSensitive))
+        .toList();
   }
 
   /// The main search function.
   ///
   /// Given a search query. Return a list of search results.
-  List<MatchResult<T>> search(String query) {
+  List<MatchResult<Value>> search(String query) {
     // Use a heap to keep track of the top `limit` best scores
-    var heapPQ = HeapPriorityQueue<MatchResult<T>>(
+    var heapPQ = HeapPriorityQueue<MatchResult<Value>>(
         (lhs, rhs) => lhs.score.compareTo(rhs.score));
 
     _entries.forEach((entry) {
-      final bestScore = entry.words.fold(0.0, (currentScore, word) {
+      final bestScore = entry.words.fold<double>(0.0, (currentScore, word) {
         final distance = _levenshtein.distance(query, word);
         final maxLength = max(query.length, word.length);
         final score = (maxLength - distance) / maxLength;

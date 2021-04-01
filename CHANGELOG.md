@@ -1,3 +1,8 @@
+## 2.0.1
+
+- Migrate to null-safety, use newer dart features (`late` and `required`) and make code more Dart-like
+- Change the name of the generic `T` for a more descriptive `Value`
+
 ## 2.0.0
 
 - Convert from snake-case to lowerCamelCase [PR](https://github.com/IvoriApp/woozy-search/pull/5)

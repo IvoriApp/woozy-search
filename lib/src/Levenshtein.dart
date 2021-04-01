@@ -7,12 +7,12 @@ import 'dart:math';
 class Levenshtein {
   int length1;
   int length2;
-  List<List<int>> _dp;
+  late List<List<int>> _dp;
 
   /// Constructor.
-  Levenshtein() {
-    length1 = 10;
-    length2 = 10;
+  Levenshtein()
+      : length1 = 10,
+        length2 = 10 {
     _resizeDPArray(length1, length2);
   }
 
