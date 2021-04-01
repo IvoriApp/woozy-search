@@ -2,7 +2,7 @@ import 'package:woozy_search/src/Levenshtein.dart';
 import 'package:test/test.dart';
 
 void main() {
-  Levenshtein levenshtein;
+  late Levenshtein levenshtein;
   setUp(() {
     levenshtein = Levenshtein();
   });
