@@ -6,7 +6,7 @@ A super simple and lightweight client-side fuzzy-search library based on Levensh
 
 ```pubspec.yaml
 dependencies:
-  woozy_search: '>=2.0.0 <3.0.0'
+  woozy_search: '>=2.0.2 <3.0.0'
 ```
 
 **Basic Usage**
