@@ -1,3 +1,8 @@
+## 2.0.3
+
+- Models.dart separated into InputEntry.dart and MatchResult.dart
+- woozy_search.dart exports src/MatchResult.dart
+
 ## 2.0.1
 
 - Migrate to null-safety, use newer dart features (`late` and `required`) and make code more Dart-like
