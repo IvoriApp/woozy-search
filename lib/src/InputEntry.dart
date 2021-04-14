@@ -9,7 +9,7 @@ class InputEntry<Value> {
   /// A list of words that is tokenized from [text].
   late List<String> _words;
 
-  /// Reach only list of [words].
+  /// Read-only list of [words].
   List<String> get words => _words;
 
   /// Constructor of a input entry.
@@ -20,4 +20,3 @@ class InputEntry<Value> {
     }
   }
 }
-
